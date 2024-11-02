@@ -1,15 +1,11 @@
 <template>
   <div>
-    <a class="bg-red-900" href="https://vite.dev" target="_blank">
+    <a href="https://vite.dev" target="_blank">
       <img class="bg-red-900" src="/vite.svg" alt="Vite logo" />
     </a>
   </div>
 </template>
 
-<script setup>
+<script setup></script>
 
-</script>
-
-<style scoped>
-
-</style>
+<style scoped></style>
