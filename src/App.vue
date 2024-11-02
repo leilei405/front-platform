@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img class="bg-red-900" src="/vite.svg" alt="Vite logo" />
-    </a>
-  </div>
+  <div>{{ isMobileTerminal }}</div>
 </template>
 
-<script setup></script>
+<script setup>
+import { isMobileTerminal } from './utils/flexible'
+</script>
 
 <style scoped></style>
