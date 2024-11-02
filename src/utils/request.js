@@ -1,7 +1,9 @@
 import axios from 'axios'
 
+const env = import.meta.env.VITE_BASE_API
+
 export default axios.create({
-  baseURL: '/api',
+  baseURL: env,
   timeout: 3000
 })
 
