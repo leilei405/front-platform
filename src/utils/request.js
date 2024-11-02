@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export default axios.create({
-  baseURL: 'https://api.imooc-front.lgdsunday.club/api',
+  baseURL: '/api',
   timeout: 3000
 })
 
