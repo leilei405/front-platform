@@ -14,6 +14,7 @@
       <!-- 右侧菜单按钮 -->
       <li
         class="fixed top-0 right-[-1px] h-4 px-1 flex items-center bg-white z-20 shadow-l-white"
+        @click="clickShow"
       >
         <svg-icon class="w-1.5 h-1.5" name="hamburger"></svg-icon>
       </li>
@@ -30,6 +31,9 @@
         {{ item.name }}
       </li>
     </ul>
+    <popup v-model="visible">
+      <div>我是内容区域</div>
+    </popup>
   </div>
 </template>
 
@@ -84,6 +88,12 @@ watch(selectedCurrentIndex, val => {
 // 点击类目 切换选中的下标
 const handleClick = index => {
   selectedCurrentIndex.value = index
+}
+
+// 控制popup组件显示隐藏
+const visible = ref(false)
+const clickShow = () => {
+  visible.value = !visible.value
 }
 </script>
 
