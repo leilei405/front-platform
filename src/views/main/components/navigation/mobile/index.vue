@@ -43,10 +43,10 @@ defineProps({
   }
 })
 
-// 滑块样式定义
+// 初始化滑块样式定义
 const sliderStyle = ref({
   transform: 'translateX(0px)',
-  width: '60px'
+  width: '52px'
 })
 
 // 选中的类目下标
