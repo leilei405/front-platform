@@ -12,6 +12,9 @@ export default {
         xl: ['0.65rem', '0.75rem'],
         '2xl': ['0.75rem', '0.85rem'],
         '3xl': ['0.85rem', '0.95rem']
+      },
+      boxShadow: {
+        'l-white': '-10px 0 10px white'
       }
     }
   },
