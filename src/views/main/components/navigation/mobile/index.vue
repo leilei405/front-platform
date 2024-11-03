@@ -25,14 +25,14 @@
         :key="item.id"
         :ref="setItemRef"
         :class="{ 'text-zinc-100': selectedCurrentIndex === index }"
-        @click="handleClick(index)"
+        @click="onItemClick(index)"
         class="shrink-0 px-1.5 py-0.5 z-10 duration-200 last:mr-4"
       >
         {{ item.name }}
       </li>
     </ul>
     <popup v-model="visible">
-      <div>我是内容区域</div>
+      <category-menu :categoryData="data" @onItemClick="onItemClick" />
     </popup>
   </div>
 </template>
@@ -40,6 +40,8 @@
 <script setup>
 import { ref, onBeforeUpdate, watch } from 'vue'
 import { useScroll } from '@vueuse/core'
+import CategoryMenu from '@/views/main/components/menu/index.vue'
+
 defineProps({
   data: {
     type: Array,
@@ -86,8 +88,9 @@ watch(selectedCurrentIndex, val => {
 })
 
 // 点击类目 切换选中的下标
-const handleClick = index => {
+const onItemClick = index => {
   selectedCurrentIndex.value = index
+  visible.value = false
 }
 
 // 控制popup组件显示隐藏

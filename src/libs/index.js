@@ -8,7 +8,7 @@ export default {
   install(Vue) {
     // 1. 获取当前路径下所有文件夹中的index.vue
     const components = import.meta.glob('./*/index.vue')
-    console.log(components)
+
     // 2. 循环遍历 将所有组件注册到Vue实例中
     for (const key in components) {
       // 2.1 获取组件名称
