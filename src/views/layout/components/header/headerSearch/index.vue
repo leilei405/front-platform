@@ -1,5 +1,7 @@
 <template>
-  <div>HeaderSearch</div>
+  <div class="w-full">
+    <search />
+  </div>
 </template>
 
 <script setup></script>

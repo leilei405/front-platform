@@ -1,5 +1,5 @@
 <template>
-  <div>HeaderMY</div>
+  <div>my</div>
 </template>
 
 <script setup></script>
