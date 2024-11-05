@@ -28,3 +28,25 @@ export const THEME_CONFIG = [
     name: '跟随系统'
   }
 ]
+
+// Profile页面配置
+export const PROFILE_CONFIG = [
+  {
+    id: '0',
+    path: 'profile',
+    icon: 'profile',
+    title: '个人资料'
+  },
+  {
+    id: '1',
+    path: '/member',
+    icon: 'vip-profile',
+    title: '升级VIP'
+  },
+  {
+    id: '2',
+    path: '',
+    icon: 'logout',
+    title: '退出登录'
+  }
+]
