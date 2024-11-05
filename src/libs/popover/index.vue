@@ -26,6 +26,9 @@ const isVisible = ref(false)
 // 定义引用元素和内容DOM
 const referenceTarget = ref(null)
 const contentTarget = ref(null)
+// 定义离开气泡的时间隔
+const DELAY_TIME = 200
+let timer
 
 const props = defineProps({
   placement: {
@@ -44,11 +47,18 @@ const props = defineProps({
 // 鼠标进入时，显示弹层
 const onMouseenter = () => {
   isVisible.value = true
+  if (timer) {
+    clearTimeout(timer)
+  }
 }
 
 // 鼠标离开时，隐藏弹层
+
 const onMouseleave = () => {
-  isVisible.value = false
+  timer = setTimeout(() => {
+    isVisible.value = false
+    timer = null
+  }, DELAY_TIME)
 }
 
 // 计算元素的尺寸
