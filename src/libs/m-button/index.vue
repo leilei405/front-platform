@@ -8,6 +8,7 @@
         'active:scale-105': isActiveAnim
       }
     ]"
+    @click.stop="handleBtnClick"
   >
     <svg-icon
       v-if="loading"
@@ -103,6 +104,13 @@ const props = defineProps({
 const sizeKey = computed(() => {
   return props.icon ? 'icon-' + props.size : props.size
 })
+
+const emits = defineEmits(['click'])
+
+const handleBtnClick = () => {
+  if (props.loading) return
+  emits('click')
+}
 </script>
 
 <style lang="scss" scoped></style>
