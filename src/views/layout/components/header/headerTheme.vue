@@ -1,5 +1,5 @@
 <template>
-  <popover>
+  <popover placement="bottom-left">
     <template #reference>
       <svg-icon
         name="theme-light"
