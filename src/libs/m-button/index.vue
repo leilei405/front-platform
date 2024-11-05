@@ -30,9 +30,12 @@
 
 <script>
 const typeEnum = {
-  primary: 'text-white bg-zinc-800 hover:bg-zinc-900 active:bg-zinc-800',
-  main: 'text-white bg-main hover:bg-zinc-900 active:bg-zinc-800',
-  info: 'text-zinc-800 bg-zinc-200 hover:bg-zinc-300 active:bg-zinc-200'
+  main: 'text-white bg-main hover:bg-hover-main active:bg-main', // 主题按钮
+  primary: 'text-white bg-primary hover:bg-hover-primary active:bg-primary', // 主要按钮
+  success: 'text-white bg-success hover:bg-hover-success active:bg-success', // 成功按钮
+  warning: 'text-white bg-warning hover:bg-hover-warning active:bg-warning', // 警告按钮
+  error: 'text-white bg-error hover:bg-hover-error active:bg-error', // 错误按钮
+  info: 'text-zinc-800 bg-zinc-200 hover:bg-zinc-300 active:bg-zinc-200' // 信息按钮
 }
 
 const sizeEnum = {

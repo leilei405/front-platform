@@ -19,6 +19,19 @@ export default {
       height: {
         header: '72px',
         main: 'calc(100vh - 72px)'
+      },
+      colors: {
+        main: '#ff4d4f',
+        'hover-main': '#ff7875',
+        primary: '#1677ff',
+        'hover-primary': '#4096ff',
+        success: '#52c41a',
+        'hover-success': '#73d13d',
+        warning: '#faad14',
+        'hover-warning': '#ffc53d',
+        error: '#f5222d',
+        'hover-error': '#f75959',
+        info: '#1890ff'
       }
     }
   },
