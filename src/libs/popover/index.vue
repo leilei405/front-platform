@@ -27,7 +27,7 @@ const isVisible = ref(false)
 const referenceTarget = ref(null)
 const contentTarget = ref(null)
 // 定义离开气泡的时间隔
-const DELAY_TIME = 200
+const DELAY_TIME = 100
 let timer
 
 const props = defineProps({
