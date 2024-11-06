@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>主题切换</title>
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+      }
+      .light {
+        width: 100vw;
+        height: 100vh;
+        background-color: white;
+        color: black;
+        transition: all 1s;
+      }
+      .dark {
+        width: 100vw;
+        height: 100vh;
+        background-color: black;
+        color: white;
+        transition: all 1s;
+      }
+
+      button {
+        position: fixed;
+        top: 100px;
+        right: 100px;
+      }
+    </style>
+  </head>
+  <body class="light">
+    <div class="content"></div>
+    <button onclick="change()">切换主题</button>
+  </body>
+  <script>
+    function change() {
+      let theme = localStorage.getItem('theme')
+      if (theme === 'dark') {
+        localStorage.setItem('theme', 'light')
+        document.body.className = 'dark'
+      } else {
+        localStorage.setItem('theme', 'dark')
+        document.body.className = 'light'
+      }
+    }
+  </script>
+</html>
