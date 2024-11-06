@@ -1,6 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  // 手动切换主题色
+  darkMode: 'class',
+  // 应用到哪些文件下
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+  // 自定义主题
   theme: {
     extend: {
       fontSize: {
@@ -14,7 +18,8 @@ export default {
         '3xl': ['0.85rem', '0.95rem']
       },
       boxShadow: {
-        'l-white': '-10px 0 10px white'
+        'l-white': '-10px 0 10px white',
+        'l-zinc': '-10px 0 10px #18181b'
       },
       height: {
         header: '72px',

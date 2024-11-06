@@ -13,7 +13,7 @@
         <svg-icon
           class="h-1.5 w-1.5 ml-[-15px]"
           name="down-arrow"
-          fillClass="fill-zinc-900"
+          fillClass="fill-zinc-900 dark:fill-zinc-300"
         />
         <!-- vip -->
         <svg-icon
@@ -26,14 +26,16 @@
       <div
         v-for="item in PROFILE_CONFIG"
         :key="item.id"
-        class="flex items-center p-1 cursor-pointer rounded hover:bg-zinc-100/60"
+        class="flex items-center p-1 cursor-pointer rounded hover:bg-zinc-100/60 dark:hover:bg-zinc-800"
       >
         <svg-icon
           :name="item.icon"
           class="w-1.5 h-1.5 mr-1"
-          fillClass="fill-zinc-900"
+          fillClass="fill-zinc-900 dark:fill-zinc-300"
         />
-        <span class="text-sm text-zinc-900">{{ item.title }}</span>
+        <span class="text-sm text-zinc-900 dark:text-zinc-100">{{
+          item.title
+        }}</span>
       </div>
     </div>
   </popover>
