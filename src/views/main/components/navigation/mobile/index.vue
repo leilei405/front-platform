@@ -21,7 +21,7 @@
 
       <!-- 每一个类目 -->
       <li
-        v-for="(item, index) in data"
+        v-for="(item, index) in $store.getters.categoryData"
         :key="item.id"
         :ref="setItemRef"
         :class="{ 'text-zinc-100': selectedCurrentIndex === index }"
@@ -32,7 +32,10 @@
       </li>
     </ul>
     <popup v-model="visible">
-      <category-menu :categoryData="data" @onItemClick="onItemClick" />
+      <category-menu
+        :categoryData="$store.getters.categoryData"
+        @onItemClick="onItemClick"
+      />
     </popup>
   </div>
 </template>
@@ -41,13 +44,6 @@
 import { ref, onBeforeUpdate, watch } from 'vue'
 import { useScroll } from '@vueuse/core'
 import CategoryMenu from '@/views/main/components/menu/index.vue'
-
-defineProps({
-  data: {
-    type: Array,
-    required: true
-  }
-})
 
 // 初始化滑块样式定义
 const sliderStyle = ref({
