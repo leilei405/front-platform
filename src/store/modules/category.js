@@ -1,11 +1,15 @@
-import { ALL_CATEGORY } from '@/constants'
+import { ALL_CATEGORY, initCategoryList } from '@/constants'
 import { getCategory } from '@/api/category'
 
 export default {
   namespaced: true, // 开启命名空间
   state: () => {
     return {
-      categoryData: [ALL_CATEGORY]
+      // navigation 导航栏数据闪烁解决
+      // 1.categoryData 给一组初始数据
+      // 2.让服务端获取数据 替换初始数据
+      // 3.防止初始化数据太老 我们每次把 获取到的新数据 都作为下一次的初始化数据
+      categoryData: initCategoryList
     }
   },
 
