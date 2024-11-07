@@ -1,11 +1,15 @@
 <template>
-  <div>
-    <navigation-vue />
+  <div class="h-full overflow-auto bg-white dark:bg-zinc-800 duration-500">
+    <Navigation />
+    <div class="max-w-screen-xl mx-auto relative m-1 xl:m-4">
+      <ImageList />
+    </div>
   </div>
 </template>
 
 <script setup>
-import navigationVue from './components/navigation/index.vue'
+import Navigation from './components/navigation/index.vue'
+import ImageList from './components/list/index.vue'
 </script>
 
 <style lang="scss" scoped></style>
