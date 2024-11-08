@@ -2,7 +2,9 @@
 <template>
   <div class="h-screen">
     <Header class="h-header" />
-    <Main class="h-main" />
+    <div class="h-main">
+      <Main />
+    </div>
     <Floating class="fixed bottom-10 right-2" />
   </div>
 </template>
