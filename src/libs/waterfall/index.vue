@@ -27,7 +27,9 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, nextTick, onMounted, ref, watch } from 'vue'
+import { getAllImg, getImgElements, onComplateImgs } from './utils'
+
 const props = defineProps({
   // 数据源
   data: {
@@ -104,6 +106,54 @@ onMounted(() => {
   useColumnWidth()
   console.log(columnWidth.value)
 })
+
+// 需要图片预加载情况
+let itemHeights = []
+const waitImgComplate = () => {
+  itemHeights = []
+  let itemElements = [...document.getElementsByClassName('m-waterfall-item')] // 获取所有的item元素
+  const imgElements = getImgElements(itemElements) //
+  const allImgs = getAllImg(imgElements)
+  console.log(allImgs, '===allImgs===')
+  onComplateImgs(allImgs).then(() => {
+    itemElements.forEach(el => {
+      itemHeights.push(el.offsetHeight)
+    })
+    useItemLocation()
+  })
+}
+
+// 不需要图片预加载情况
+const useItemHeight = () => {
+  itemHeights = []
+  let itemElements = [...document.getElementsByClassName('m-waterfall-item')] // 获取所有的item元素
+  itemElements.forEach(el => {
+    itemHeights.push(el.offsetHeight)
+  })
+  useItemLocation()
+}
+
+const useItemLocation = () => {
+  console.log(itemHeights, '===itemHeights===')
+}
+
+// 触发计算
+watch(
+  () => props.data,
+  () => {
+    nextTick(() => {
+      if (props.preload) {
+        waitImgComplate()
+      } else {
+        useItemHeight()
+      }
+    })
+  },
+  {
+    deep: true,
+    immediate: true
+  }
+)
 </script>
 
 <style lang="scss" scoped></style>
