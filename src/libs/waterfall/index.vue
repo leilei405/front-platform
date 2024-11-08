@@ -27,8 +27,15 @@
 </template>
 
 <script setup>
-import { computed, nextTick, onMounted, ref, watch } from 'vue'
-import { getAllImg, getImgElements, onComplateImgs } from './utils'
+import { computed, nextTick, onMounted, ref, watch, onUnmounted } from 'vue'
+import {
+  getAllImg,
+  getImgElements,
+  onComplateImgs,
+  getMinHeightColumn,
+  getMinHeight,
+  getMaxHeight
+} from './utils'
 
 const props = defineProps({
   // 数据源
@@ -107,6 +114,13 @@ onMounted(() => {
   console.log(columnWidth.value)
 })
 
+// 组件销毁时候清除所有的style
+onUnmounted(() => {
+  props.data.forEach(item => {
+    delete item._style
+  })
+})
+
 // 需要图片预加载情况
 let itemHeights = []
 const waitImgComplate = () => {
@@ -135,13 +149,31 @@ const useItemHeight = () => {
 
 const useItemLocation = () => {
   console.log(itemHeights, '===itemHeights===')
+  props.data.forEach((item, index) => {
+    if (item._style) {
+      return
+    }
+    item._style = {
+      left: getItemLeft(),
+      top: getItemTop()
+    }
+    // 指定的列高度的自增
+    increasingHeight(index)
+  })
+  containerHeight.value = getMaxHeight(columnHeightObj.value)
 }
 
 // 触发计算
 watch(
   () => props.data,
-  () => {
+  newVal => {
     nextTick(() => {
+      const resetColumnHeight = newVal.every(item => !item._style)
+      if (resetColumnHeight) {
+        // 构建高度记录容器
+        useColumnHeightObj()
+      }
+
       if (props.preload) {
         waitImgComplate()
       } else {
@@ -154,6 +186,27 @@ watch(
     immediate: true
   }
 )
+
+// 返回下一个 item 的 left
+const getItemLeft = () => {
+  const minHeightColumn = getMinHeightColumn(columnHeightObj.value)
+  const left =
+    minHeightColumn * (columnWidth.value + props.columnSpacing) +
+    containerLeft.value
+  return left
+}
+
+// 返回下一个 item 的 top
+const getItemTop = () => {
+  getMinHeight(columnHeightObj.value)
+}
+
+// 指定的列高度的自增
+const increasingHeight = index => {
+  const minHeightColumn = getMinHeightColumn(columnHeightObj.value)
+  columnHeightObj.value[minHeightColumn] +=
+    itemHeights[index] + props.rowSpacing
+}
 </script>
 
 <style lang="scss" scoped></style>

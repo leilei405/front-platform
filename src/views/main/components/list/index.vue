@@ -1,6 +1,6 @@
 <template>
   <div>
-    <waterfall :data="imageList" nodeKey="id" :column="5" :preload="true">
+    <waterfall :data="imageList" nodeKey="id" :column="4" :preload="true">
       <template v-slot="{ item, width }">
         <ItemImage :data="item" :width="width" />
       </template>

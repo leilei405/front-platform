@@ -35,7 +35,7 @@
       </div>
     </div>
     <!-- 底部 -->
-    <p class="text-sm mt-1 font-bold text-zinc-900 dark:text-zinc-300 px-1.5">
+    <p class="text-sm mt-1 font-bold text-zinc-900 dark:text-zinc-300 px-1">
       {{ data.title }}
     </p>
     <!-- 作者 -->

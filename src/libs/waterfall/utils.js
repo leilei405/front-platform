@@ -31,3 +31,23 @@ export const onComplateImgs = (imgs = []) => {
   })
   return Promise.all(promiseAll)
 }
+
+// 返回列高中最小的高度
+export const getMinHeight = (columnHeights = {}) => {
+  const columnHeightArr = Object.values(columnHeights)
+  return Math.min(...columnHeightArr)
+}
+
+// 返回列高中最大的高度
+export const getMaxHeight = (columnHeights = {}) => {
+  const columnHeightArr = Object.values(columnHeights)
+  return Math.max(...columnHeightArr)
+}
+
+// 返回列高对象中最小高度所在的列
+export const getMinHeightColumn = (columnHeights = {}) => {
+  const minHeight = getMinHeight(columnHeights)
+  return Object.keys(columnHeights).find(
+    key => columnHeights[key] === minHeight
+  )
+}
