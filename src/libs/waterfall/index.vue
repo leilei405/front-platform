@@ -111,7 +111,6 @@ const useColumnWidth = () => {
 
 onMounted(() => {
   useColumnWidth()
-  console.log(columnWidth.value)
 })
 
 // 组件销毁时候清除所有的style
@@ -128,7 +127,6 @@ const waitImgComplate = () => {
   let itemElements = [...document.getElementsByClassName('m-waterfall-item')] // 获取所有的item元素
   const imgElements = getImgElements(itemElements) //
   const allImgs = getAllImg(imgElements)
-  console.log(allImgs, '===allImgs===')
   onComplateImgs(allImgs).then(() => {
     itemElements.forEach(el => {
       itemHeights.push(el.offsetHeight)
@@ -148,18 +146,20 @@ const useItemHeight = () => {
 }
 
 const useItemLocation = () => {
-  console.log(itemHeights, '===itemHeights===')
   props.data.forEach((item, index) => {
     if (item._style) {
       return
     }
+
     item._style = {
       left: getItemLeft(),
       top: getItemTop()
     }
+
     // 指定的列高度的自增
     increasingHeight(index)
   })
+
   containerHeight.value = getMaxHeight(columnHeightObj.value)
 }
 
@@ -198,7 +198,7 @@ const getItemLeft = () => {
 
 // 返回下一个 item 的 top
 const getItemTop = () => {
-  getMinHeight(columnHeightObj.value)
+  return getMinHeight(columnHeightObj.value)
 }
 
 // 指定的列高度的自增
