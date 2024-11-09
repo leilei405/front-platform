@@ -2,7 +2,13 @@
   <div class="w-full">
     <search v-model="inputValue">
       <template #dropdown>
-        <div class="w-full h-20 bg-red-500">drop</div>
+        <div>
+          <Hint
+            v-show="inputValue"
+            :searchText="inputValue"
+            @itemClick="onSearchHandler"
+          />
+        </div>
       </template>
     </search>
   </div>
@@ -10,7 +16,11 @@
 
 <script setup>
 import { ref } from 'vue'
+import Hint from './hint.vue'
 const inputValue = ref('')
+const onSearchHandler = val => {
+  inputValue.value = val
+}
 </script>
 
 <style lang="scss" scoped></style>

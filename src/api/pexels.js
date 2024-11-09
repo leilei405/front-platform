@@ -8,3 +8,13 @@ export function getImageList(params) {
     params
   })
 }
+
+// 搜索图片列表
+export function getHintList(keyword) {
+  return request({
+    url: '/pexels/hint',
+    params: {
+      q: keyword
+    }
+  })
+}
