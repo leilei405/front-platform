@@ -214,14 +214,18 @@ const resetWaterfall = () => {
     props.data.forEach(item => {
       delete item._style
     })
-  }, 100)
+  }, 200)
 }
 // 监听列数的变化
 watch(
   () => props.column,
   newVal => {
-    columnWidth.value = 0
-    resetWaterfall()
+    if (props.preload) {
+      columnWidth.value = 0
+      resetWaterfall()
+    } else {
+      resetWaterfall()
+    }
   }
 )
 </script>

@@ -4,7 +4,7 @@
       :data="imageList"
       nodeKey="id"
       :column="isMobileTerminal ? 2 : 5"
-      :preload="true"
+      :preload="false"
       class="px-1 w-full"
     >
       <template v-slot="{ item, width }">
