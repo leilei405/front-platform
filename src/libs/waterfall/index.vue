@@ -219,7 +219,7 @@ const resetWaterfall = () => {
 // 监听列数的变化
 watch(
   () => props.column,
-  newVal => {
+  () => {
     if (props.preload) {
       columnWidth.value = 0
       resetWaterfall()

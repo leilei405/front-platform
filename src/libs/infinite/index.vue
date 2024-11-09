@@ -15,7 +15,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useVModel, useIntersectionObserver } from '@vueuse/core'
 const props = defineProps({
   modelValue: {
@@ -32,14 +32,27 @@ const emits = defineEmits(['onload', 'update:modelValue'])
 
 const loading = useVModel(props)
 
-const loadingTarget = ref(null)
+const loadingTarget = ref(null) // 滚动的元素
+const targetIsIntersecting = ref(false) // 记录前端是否在底部
 useIntersectionObserver(loadingTarget, ([{ isIntersecting }]) => {
+  targetIsIntersecting.value = isIntersecting
+  emitLoad()
+})
+
+// load 事件
+const emitLoad = () => {
   // 在可视区域内 && 不在加载中 && 没有加载完成
-  if (isIntersecting && !loading.value && !props.isFinished) {
+  if (targetIsIntersecting.value && !loading.value && !props.isFinished) {
     loading.value = true
     emits('onload')
-    emits('update:modelValue', true)
   }
+}
+
+// loading 状态变化
+watch(loading, () => {
+  setTimeout(() => {
+    emitLoad()
+  }, 200)
 })
 </script>
 
