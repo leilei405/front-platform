@@ -207,6 +207,23 @@ const increasingHeight = index => {
   columnHeightObj.value[minHeightColumn] +=
     itemHeights[index] + props.rowSpacing
 }
+// 重新构建瀑布流
+const resetWaterfall = () => {
+  setTimeout(() => {
+    useColumnWidth()
+    props.data.forEach(item => {
+      delete item._style
+    })
+  }, 100)
+}
+// 监听列数的变化
+watch(
+  () => props.column,
+  newVal => {
+    columnWidth.value = 0
+    resetWaterfall()
+  }
+)
 </script>
 
 <style lang="scss" scoped></style>

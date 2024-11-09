@@ -1,6 +1,12 @@
 <template>
   <div>
-    <waterfall :data="imageList" nodeKey="id" :column="5" :preload="true">
+    <waterfall
+      :data="imageList"
+      nodeKey="id"
+      :column="isMobileTerminal ? 2 : 5"
+      :preload="true"
+      class="px-1 w-full"
+    >
       <template v-slot="{ item, width }">
         <ItemImage :data="item" :width="width" />
       </template>
@@ -11,6 +17,7 @@
 <script setup>
 import { ref } from 'vue'
 import { getImageList } from '@/api/pexels'
+import { isMobileTerminal } from '@/utils/flexible'
 import ItemImage from './item.vue'
 
 // 查询参数
