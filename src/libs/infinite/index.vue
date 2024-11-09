@@ -15,6 +15,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { useVModel, useIntersectionObserver } from '@vueuse/core'
 const props = defineProps({
   modelValue: {
