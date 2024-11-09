@@ -17,16 +17,19 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
+import { useStore } from 'vuex'
 import { getImageList } from '@/api/pexels' // getData
 import { isMobileTerminal } from '@/utils/flexible' //PC & 移动
 import ItemImage from './item.vue'
 
 // 查询参数
-const query = {
+let query = {
   page: 1,
   size: 20
 }
+
+const store = useStore()
 
 const imageList = ref([]) // 获取图片列表
 const isLoading = ref(false) // 是否加载中
@@ -54,6 +57,23 @@ const getList = async () => {
 }
 
 getList()
+
+// 修改query 重新发起请求
+const resetQuery = newQuery => {
+  query = { ...query, ...newQuery }
+  isFinished.value = false
+  imageList.value = []
+}
+
+watch(
+  () => store.getters.currentCategory,
+  currentCategory => {
+    resetQuery({
+      page: 1,
+      categoryId: currentCategory.id
+    })
+  }
+)
 </script>
 
 <style lang="scss" scoped></style>

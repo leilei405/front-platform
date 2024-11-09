@@ -24,8 +24,10 @@
         v-for="(item, index) in $store.getters.categoryData"
         :key="item.id"
         :ref="setItemRef"
-        :class="{ 'text-zinc-100': selectedCurrentIndex === index }"
-        @click="onItemClick(index)"
+        :class="{
+          'text-zinc-100': $store.getters.currentCategoryIndex === index
+        }"
+        @click="onItemClick(item)"
         class="shrink-0 px-1.5 py-0.5 z-10 duration-200 last:mr-4"
       >
         {{ item.name }}
@@ -43,7 +45,9 @@
 <script setup>
 import { ref, onBeforeUpdate, watch } from 'vue'
 import { useScroll } from '@vueuse/core'
+import { useStore } from 'vuex'
 import CategoryMenu from '@/views/main/components/menu/index.vue'
+const store = useStore()
 
 // 初始化滑块样式定义
 const sliderStyle = ref({
@@ -52,7 +56,7 @@ const sliderStyle = ref({
 })
 
 // 选中的类目下标
-const selectedCurrentIndex = ref(0)
+// const selectedCurrentIndex = ref(0)
 
 // 获取所有的item元素
 // vue3 中要在v-for 下循环的多个DOM 元素，ref指定的必须是一个函数
@@ -73,19 +77,23 @@ const ulTarget = ref(null)
 const { x: ulScrollLeft } = useScroll(ulTarget)
 
 // 监听ul滚动的距离
-watch(selectedCurrentIndex, val => {
-  const { left, width } = itemRefs[val].getBoundingClientRect()
-  // const res = itemRefs[val].getBoundingClientRect()
+watch(
+  () => store.getters.currentCategoryIndex,
+  val => {
+    const { left, width } = itemRefs[val].getBoundingClientRect()
+    // const res = itemRefs[val].getBoundingClientRect()
 
-  sliderStyle.value = {
-    transform: `translateX(${ulScrollLeft.value + left - 10}px)`,
-    width: width + 'px'
+    sliderStyle.value = {
+      transform: `translateX(${ulScrollLeft.value + left - 10}px)`,
+      width: width + 'px'
+    }
   }
-})
+)
 
 // 点击类目 切换选中的下标
-const onItemClick = index => {
-  selectedCurrentIndex.value = index
+const onItemClick = item => {
+  store.commit('app/changeCurrentCategory', item)
+  // selectedCurrentIndex.value = index
   visible.value = false
 }
 

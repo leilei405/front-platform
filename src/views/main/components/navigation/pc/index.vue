@@ -22,9 +22,9 @@
         class="shrink-0 px-1.5 py-0 z-10 duration-200 text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-300 text-base font-bold h-4 leading-4 cursor-pointer hover:bg-zinc-200 dark:hover:bg-zinc-900 rounded mr-1 mb-1"
         :class="{
           'text-zinc-900 dark:text-zinc-300 bg-zinc-200 dark:bg-zinc-900':
-            selectedCurrentIndex === index
+            $store.getters.currentCategoryIndex === index
         }"
-        @click="onItemClick(index)"
+        @click="onItemClick(item)"
       >
         {{ item.name }}
       </li>
@@ -34,6 +34,8 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useStore } from 'vuex'
+const store = useStore()
 const isOpenCategory = ref(false)
 
 // 展开收起
@@ -43,8 +45,9 @@ const toggleCategory = () => {
 
 // 选中状态处理
 const selectedCurrentIndex = ref(0)
-const onItemClick = index => {
-  selectedCurrentIndex.value = index
+const onItemClick = item => {
+  store.commit('app/changeCurrentCategory', item)
+  selectedCurrentIndex.value = item
 }
 </script>
 
