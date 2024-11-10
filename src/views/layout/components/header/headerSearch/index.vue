@@ -1,6 +1,10 @@
 <template>
   <div class="w-full">
-    <search v-model="inputValue">
+    <search
+      v-model="inputValue"
+      @search="onSearchHandler"
+      @clear="onSearchHandler"
+    >
       <template #dropdown>
         <div>
           <Hint
@@ -8,6 +12,8 @@
             :searchText="inputValue"
             @itemClick="onSearchHandler"
           />
+
+          <SearchHistory v-show="!inputValue" @itemClick="onSearchHandler" />
         </div>
       </template>
     </search>
@@ -16,10 +22,19 @@
 
 <script setup>
 import { ref } from 'vue'
+import { useStore } from 'vuex'
 import Hint from './hint.vue'
+import SearchHistory from './history.vue'
+
+const store = useStore()
+
 const inputValue = ref('')
+
 const onSearchHandler = val => {
   inputValue.value = val
+  if (val) {
+    store.commit('search/createHistory', val)
+  }
 }
 </script>
 
