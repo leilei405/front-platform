@@ -13,6 +13,7 @@
 321
 <script setup>
 import { ref, watch } from 'vue'
+import { watchDebounced } from '@vueuse/core'
 import { getHintList } from '@/api/pexels'
 const emits = defineEmits(['itemClick'])
 const props = defineProps({
@@ -28,9 +29,10 @@ const getHintData = async () => {
   const { result } = await getHintList(props.searchText)
   hintData.value = result
 }
-// 监听searchText 输入框变化
-watch(() => props.searchText, getHintData, {
-  immediate: true
+// 监听searchText 输入框变化 防抖 500ms 后请求数据
+watchDebounced(() => props.searchText, getHintData, {
+  immediate: true,
+  debounce: 500
 })
 const onItemClick = item => {
   emits('itemClick', item)
