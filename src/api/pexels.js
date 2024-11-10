@@ -18,3 +18,10 @@ export function getHintList(keyword) {
     }
   })
 }
+
+// 获取推荐主题
+export const getThemes = () => {
+  return request({
+    url: '/pexels/themes'
+  })
+}

@@ -14,6 +14,8 @@
           />
 
           <SearchHistory v-show="!inputValue" @itemClick="onSearchHandler" />
+
+          <SearchTheme v-show="!inputValue" />
         </div>
       </template>
     </search>
@@ -25,6 +27,7 @@ import { ref } from 'vue'
 import { useStore } from 'vuex'
 import Hint from './hint.vue'
 import SearchHistory from './history.vue'
+import SearchTheme from './theme.vue'
 
 const store = useStore()
 
