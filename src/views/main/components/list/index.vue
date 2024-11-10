@@ -74,6 +74,17 @@ watch(
     })
   }
 )
+
+// 监听SearchText 变化
+watch(
+  () => store.getters.searchText,
+  val => {
+    resetQuery({
+      page: 1,
+      searchText: val
+    })
+  }
+)
 </script>
 
 <style lang="scss" scoped></style>
