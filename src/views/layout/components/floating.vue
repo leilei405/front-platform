@@ -3,6 +3,7 @@
     <!-- 引导 -->
     <div
       class="guide-start w-4 h-4 mb-1 bg-white dark:bg-zinc-900 border dark:border-0 border-zinc-200 rounded-full flex justify-center items-center cursor-pointer"
+      @click="startGuide"
     >
       <svg-icon
         name="guide"
@@ -40,6 +41,84 @@
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import { onMounted } from 'vue'
+import { driver } from 'driver.js'
+import 'driver.js/dist/driver.css'
+
+const guideInfo = [
+  {
+    element: '.guide-home',
+    popover: {
+      title: '欢迎使用',
+      description:
+        '这是一个图片管理系统，你可以在这里上传、管理、分享你的图片。点击可返回首页'
+    }
+  },
+  // 图片搜索
+  {
+    element: '.guide-search',
+    popover: {
+      title: '图片搜索',
+      description: '你可以在这里搜索你想要的图片。'
+    }
+  },
+  // 图片风格
+  {
+    element: '.guide-theme',
+    popover: {
+      title: '图片风格',
+      description: '你可以在这里选择你想要的图片风格。',
+      position: 'left'
+    }
+  },
+  // 账户管理
+  {
+    element: '.guide-account',
+    popover: {
+      title: '账户管理',
+      description: '你可以在这里管理你的账户。',
+      position: 'left'
+    }
+  },
+  // 引导
+  {
+    element: '.guide-start',
+    popover: {
+      title: '引导',
+      description: '你可以在这里开启引导。',
+      position: 'left'
+    }
+  },
+  // 反馈
+  {
+    element: '.guide-feedback',
+    popover: {
+      title: '反馈',
+      description: '如果你有任何问题或者建议，欢迎反馈给我们。',
+      position: 'left'
+    }
+  }
+]
+
+const driverObj = driver({
+  showProgress: false,
+  opacity: 0.8,
+  closeBtnText: '关闭',
+  doneBtnText: '完成',
+  nextBtnText: '下一步',
+  prevBtnText: '上一步',
+  allowClose: false,
+  steps: guideInfo
+})
+
+onMounted(() => {
+  driverObj.drive()
+})
+
+const startGuide = () => {
+  driverObj.drive()
+}
+</script>
 
 <style lang="scss" scoped></style>

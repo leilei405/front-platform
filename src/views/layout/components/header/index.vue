@@ -4,7 +4,7 @@
   >
     <div class="flex items-center">
       <img
-        class="h-3 w-3 cursor-pointer mr-2"
+        class="h-3 w-3 cursor-pointer mr-2 guide-home"
         src="http://lowcodedemo.top/logo.jpg"
       />
       <HeaderSearch />

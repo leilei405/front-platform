@@ -1,5 +1,5 @@
 <template>
-  <popover placement="bottom-left">
+  <popover class="guide-account" placement="bottom-left">
     <template #reference>
       <div
         class="relative flex items-center p-0.5 rounded-sm cursor-pointer duration-200 outline-none hover:bg-zinc-100"
