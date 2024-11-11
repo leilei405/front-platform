@@ -36,7 +36,17 @@ export default {
         'hover-warning': '#ffc53d',
         error: '#f5222d',
         'hover-error': '#f75959',
-        info: '#1890ff'
+        info: '#1890ff',
+        // message
+        'success-100': '#F2F9EC',
+        'success-200': '#E4F2DB',
+        'success-300': '#7EC050',
+        'warn-100': '#FCF6ED',
+        'warn-200': '#F8ECDA',
+        'warn-300': '#DCA550',
+        'error-100': '#ED7456',
+        'error-200': '#f3471c',
+        'error-300': '#ffffff'
       }
     }
   },
