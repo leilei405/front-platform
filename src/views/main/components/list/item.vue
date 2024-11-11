@@ -5,6 +5,7 @@
       :style="{ backgroundColor: randomColorRGB() }"
     >
       <img
+        ref="imgRefTarget"
         v-lazy
         class="w-full rounded bg-transparent"
         :src="data.photo"
@@ -42,6 +43,7 @@
           size="small"
           icon="full"
           iconClass="fill-zinc-900 dark:fill-zinc-200"
+          @click="onImgFullscreen"
         ></m-button>
       </div>
     </div>
@@ -58,8 +60,10 @@
 </template>
 
 <script setup>
-import { randomColorRGB } from '@/utils/color'
+import { ref } from 'vue'
 import { saveAs } from 'file-saver'
+import { useFullscreen } from '@vueuse/core'
+import { randomColorRGB } from '@/utils/color'
 import { message } from '../../../../libs/message'
 
 const props = defineProps({
@@ -79,6 +83,10 @@ const onDownload = () => {
     saveAs(props.data.photoDownLink)
   }, 200)
 }
+
+// 全屏展示
+const imgRefTarget = ref(null)
+const { enter: onImgFullscreen } = useFullscreen(imgRefTarget)
 </script>
 
 <style lang="scss" scoped></style>

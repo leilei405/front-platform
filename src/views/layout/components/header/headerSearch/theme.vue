@@ -64,8 +64,6 @@ const getThemeData = async () => {
   }
 }
 
-console.log(themeData.value)
-
 getThemeData()
 </script>
 
