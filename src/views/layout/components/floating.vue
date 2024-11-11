@@ -26,7 +26,7 @@
       </template>
       <div class="w-[140px] overflow-hidden">
         <div
-          class="flex items-center p-1 cursor-pointer rounded hover:bg-zinc-100/60 dark:hover:bg-zinc-800"
+          class="flex items-center justify-evenly p-1 cursor-pointer rounded hover:bg-zinc-100/60 dark:hover:bg-zinc-800"
         >
           <svg-icon
             name="feedback"
