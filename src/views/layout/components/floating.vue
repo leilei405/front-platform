@@ -114,7 +114,7 @@ const driverObj = driver({
 
 onMounted(() => {
   // 暂时先不开启引导
-  driverObj.drive()
+  // driverObj.drive()
 })
 
 const startGuide = () => {
