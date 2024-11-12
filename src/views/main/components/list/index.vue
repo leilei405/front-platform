@@ -9,7 +9,7 @@
         class="px-1 w-full"
       >
         <template v-slot="{ item, width }">
-          <ItemImage :data="item" :width="width" />
+          <ItemImage @click="onImgDetail(item)" :data="item" :width="width" />
         </template>
       </waterfall>
     </infinite>
@@ -22,6 +22,7 @@ import { useStore } from 'vuex'
 import { getImageList } from '@/api/pexels' // getData
 import { isMobileTerminal } from '@/utils/flexible' //PC & 移动
 import ItemImage from './item.vue'
+import ImageDetail from '@/views/main/components/list/index.vue'
 
 // 查询参数
 let query = {
@@ -85,6 +86,11 @@ watch(
     })
   }
 )
+
+// 进入图片详情
+const onImgDetail = item => {
+  history.pushState(null, null, `/detail/${item.id}`)
+}
 </script>
 
 <style lang="scss" scoped></style>

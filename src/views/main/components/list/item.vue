@@ -3,6 +3,7 @@
     <div
       class="relative w-full rounded cursor-zoom-in group"
       :style="{ backgroundColor: randomColorRGB() }"
+      @click="onItemImgClick"
     >
       <img
         ref="imgRefTarget"
@@ -66,6 +67,8 @@ import { useFullscreen } from '@vueuse/core'
 import { randomColorRGB } from '@/utils/color'
 import { message } from '../../../../libs/message'
 
+const emits = defineEmits(['click'])
+
 const props = defineProps({
   data: {
     type: Object,
@@ -87,6 +90,10 @@ const onDownload = () => {
 // 全屏展示
 const imgRefTarget = ref(null)
 const { enter: onImgFullscreen } = useFullscreen(imgRefTarget)
+
+const onItemImgClick = () => {
+  emits('click', props.data.id)
+}
 </script>
 
 <style lang="scss" scoped></style>
