@@ -1,16 +1,7 @@
 <template>
-  <div class="fixed left-0 top-0 w-screen h-screen text-xl bg-slate-500 z-30">
-    {{ id }}
-  </div>
+  <div></div>
 </template>
 
-<script setup>
-const props = defineProps({
-  id: {
-    type: String,
-    required: true
-  }
-})
-</script>
+<script setup></script>
 
 <style lang="scss" scoped></style>

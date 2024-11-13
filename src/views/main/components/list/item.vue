@@ -61,9 +61,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { saveAs } from 'file-saver'
-import { useFullscreen } from '@vueuse/core'
+import { useFullscreen, useElementBounding } from '@vueuse/core'
 import { randomColorRGB } from '@/utils/color'
 import { message } from '../../../../libs/message'
 
@@ -91,8 +91,21 @@ const onDownload = () => {
 const imgRefTarget = ref(null)
 const { enter: onImgFullscreen } = useFullscreen(imgRefTarget)
 
+// 详情跳转处理 记录图片的中心点 XY 坐标 + 宽度的一半
+const { x, y, width, height } = useElementBounding(imgRefTarget)
+const imgContainer = computed(() => {
+  return {
+    translateX: parseInt(x.value + width.value / 2),
+    translateY: parseInt(y.value + height.value / 2)
+  }
+})
+
+// 点击图片跳转详情
 const onItemImgClick = () => {
-  emits('click', props.data.id)
+  emits('click', {
+    id: props.data.id,
+    location: imgContainer.value
+  })
 }
 </script>
 

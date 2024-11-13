@@ -12,6 +12,14 @@
           <ItemImage @click="onImgDetail(item)" :data="item" :width="width" />
         </template>
       </waterfall>
+      <transition
+        :class="false"
+        @before-enter="beforeEnter"
+        @enter="enter"
+        @leave="leave"
+      >
+        <PinsDetail v-if="isVisiblePins" :id="currentPins.id" />
+      </transition>
     </infinite>
   </div>
 </template>
@@ -19,10 +27,11 @@
 <script setup>
 import { ref, watch } from 'vue'
 import { useStore } from 'vuex'
+import gsap from 'gsap'
 import { getImageList } from '@/api/pexels' // getData
 import { isMobileTerminal } from '@/utils/flexible' //PC & 移动
-import ItemImage from './item.vue'
-import ImageDetail from '@/views/main/components/list/index.vue'
+import ItemImage from './item.vue' // 图片Item
+import PinsDetail from '../../../pins/components/pins.vue' // 点击图片详情
 
 // 查询参数
 let query = {
@@ -87,9 +96,53 @@ watch(
   }
 )
 
+// pins 图片详情相关
+const currentPins = ref({}) // 当前pins
+const isVisiblePins = ref(false) // 是否显示pins
+
+/**
+ * @description  当前点击的图片动画  进入前  开始进入  离开
+ *
+ */
+
+const beforeEnter = el => {
+  gsap.set(el, {
+    scaleX: 0,
+    scaleY: 0,
+    transformOrigin: '0 0',
+    translateX: currentPins.value.location.translateX,
+    translateY: currentPins.value.location.translateY,
+    opacity: 0
+  })
+}
+
+const enter = el => {
+  gsap.to(el, {
+    scaleX: 1,
+    scaleY: 1,
+    translateX: 0,
+    translateY: 0,
+    opacity: 1,
+    duration: 0.3,
+    onComplete: done
+  })
+}
+
+const leave = el => {
+  gsap.to(el, {
+    duration: 0.3,
+    scaleX: 0,
+    scaleY: 0,
+    x: currentPins.value.location.translateX,
+    y: currentPins.value.location.translateY,
+    opacity: 0
+  })
+}
 // 进入图片详情
 const onImgDetail = item => {
   history.pushState(null, null, `/detail/${item.id}`)
+  currentPins.value = item
+  isVisiblePins.value = true
 }
 </script>
 
