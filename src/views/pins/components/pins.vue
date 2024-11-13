@@ -5,6 +5,10 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+
 const props = defineProps({
   id: {
     type: String,

@@ -9,7 +9,7 @@
         class="px-1 w-full"
       >
         <template v-slot="{ item, width }">
-          <ItemImage @click="onImgDetail(item)" :data="item" :width="width" />
+          <ItemImage @click="onImgDetail" :data="item" :width="width" />
         </template>
       </waterfall>
       <transition
@@ -36,7 +36,9 @@ import PinsDetail from '../../../pins/components/pins.vue' // 点击图片详情
 // 查询参数
 let query = {
   page: 1,
-  size: 20
+  size: 20,
+  categoryId: '',
+  searchText: ''
 }
 
 const store = useStore()
@@ -110,13 +112,13 @@ const beforeEnter = el => {
     scaleX: 0,
     scaleY: 0,
     transformOrigin: '0 0',
-    translateX: currentPins.value.location.translateX,
-    translateY: currentPins.value.location.translateY,
+    translateX: currentPins.value.pos.translateX,
+    translateY: currentPins.value.pos.translateY,
     opacity: 0
   })
 }
 
-const enter = el => {
+const enter = (el, done) => {
   gsap.to(el, {
     scaleX: 1,
     scaleY: 1,
@@ -128,21 +130,21 @@ const enter = el => {
   })
 }
 
-const leave = el => {
+const leave = (el, done) => {
   gsap.to(el, {
     duration: 0.3,
     scaleX: 0,
     scaleY: 0,
-    x: currentPins.value.location.translateX,
-    y: currentPins.value.location.translateY,
+    x: currentPins.value.pos.translateX,
+    y: currentPins.value.pos.translateY,
     opacity: 0
   })
 }
 // 进入图片详情
 const onImgDetail = item => {
   history.pushState(null, null, `/detail/${item.id}`)
-  currentPins.value = item
   isVisiblePins.value = true
+  currentPins.value = item
 }
 </script>
 

@@ -93,7 +93,7 @@ const { enter: onImgFullscreen } = useFullscreen(imgRefTarget)
 
 // 详情跳转处理 记录图片的中心点 XY 坐标 + 宽度的一半
 const { x, y, width, height } = useElementBounding(imgRefTarget)
-const imgContainer = computed(() => {
+const imgContainerCenter = computed(() => {
   return {
     translateX: parseInt(x.value + width.value / 2),
     translateY: parseInt(y.value + height.value / 2)
@@ -104,7 +104,7 @@ const imgContainer = computed(() => {
 const onItemImgClick = () => {
   emits('click', {
     id: props.data.id,
-    location: imgContainer.value
+    pos: imgContainerCenter.value
   })
 }
 </script>
