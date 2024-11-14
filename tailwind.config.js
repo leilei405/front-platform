@@ -49,6 +49,11 @@ export default {
         'error-300': '#ffffff'
       },
 
+      // 毛玻璃效果
+      backdropBlur: {
+        '4xl': '240px'
+      },
+
       // scrollbar
       variants: {
         scrollbar: ['dark']

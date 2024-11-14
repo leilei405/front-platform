@@ -25,7 +25,7 @@
     <!-- 右边 -->
     <div
       class="h-full w-5 absolute right-0 flex items-center justify-center"
-      @click="onCLickRight"
+      @click="onClickRight"
     >
       <slot name="right"></slot>
     </div>
@@ -59,7 +59,7 @@ const onClickLeft = () => {
   router.back()
 }
 
-const onCLickRight = () => {
+const onClickRight = () => {
   if (props.clickRight) {
     props.clickRight()
     return
