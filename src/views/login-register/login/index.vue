@@ -6,7 +6,7 @@
   <div class="relative h-screen bg-white dark:bg-zinc-800 text-center xl:bg-zinc-200">
     <!--  头部图标  PC  -->
     <div class="hidden p-5 h-8 xl:block">
-      <img v-lazy class="m-auto w-4 h-4" src="http://lowcodedemo.top/logo.jpg">
+      <img alt="img" v-lazy class="m-auto w-4 h-4" src="http://lowcodedemo.top/logo.jpg">
     </div>
 
     <!--  头部图标  Mobile  -->
