@@ -29,7 +29,10 @@
     ></svg-icon>
 
     <!-- content -->
-    <div class="xl:w-[80%] xl:h-full xl:mx-auto xl:rounded-lg xl:flex">
+    <div
+      v-if="pexelsData.title"
+      class="xl:w-[80%] xl:h-full xl:mx-auto xl:rounded-lg xl:flex"
+    >
       <img
         :src="pexelsData.photo"
         alt="img"
