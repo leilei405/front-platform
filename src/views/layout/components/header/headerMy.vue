@@ -3,6 +3,7 @@
     <template #reference>
       <div
         class="relative flex items-center p-0.5 rounded-sm cursor-pointer duration-200 outline-none hover:bg-zinc-100"
+        v-if="false"
       >
         <!-- Profile Img -->
         <img
@@ -20,6 +21,9 @@
           name="vip"
           class="h-1.5 w-1.5 absolute right-[15px] top-[24px]"
         />
+      </div>
+      <div v-else>
+        <m-button class="guide-my" icon="profile" iconColor="#fff" @click="onToLogin"></m-button>
       </div>
     </template>
     <div class="w-[140px] overflow-hidden">
@@ -42,7 +46,15 @@
 </template>
 
 <script setup>
+import { useRouter }  from 'vue-router'
 import { PROFILE_CONFIG } from '@/constants'
+
+const router = useRouter()
+
+// 跳转到登录页
+const onToLogin = () => {
+  router.push('/login')
+}
 </script>
 
 <style lang="scss" scoped></style>
