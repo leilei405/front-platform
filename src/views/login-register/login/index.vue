@@ -1,35 +1,13 @@
-<script setup></script>
+<script setup>
+import HeaderLogin from '../components/header.vue'
+</script>
 
 <template>
   <div
+    style="background-image: linear-gradient(to top, #c1dfc4 0%, #deecdd 100%)"
     class="relative h-screen bg-white dark:bg-zinc-800 text-center xl:bg-zinc-200"
   >
-    <!--  头部图标  PC  -->
-    <div class="hidden p-5 h-8 xl:block">
-      <img
-        alt="img"
-        v-lazy
-        class="m-auto w-4 h-4"
-        src="http://lowcodedemo.top/logo.jpg"
-      />
-    </div>
-
-    <!--  头部图标  Mobile  -->
-    <div class="h-[111px] xl:hidden">
-      <img
-        v-lazy
-        class="w-4 h-4 dark:hidden"
-        src="http://lowcodedemo.top/logo.jpg"
-        alt="img"
-      />
-      <img
-        v-lazy
-        class="h-5 absolute top-[5%] left-[50%] translate-x-[-50%]"
-        alt="img"
-        src="http://lowcodedemo.top/logo.jpg"
-      />
-    </div>
-
+    <HeaderLogin />
     <!--  表单区域  -->
     <div
       class="block px-3 mt-4 dark:bg-zinc-800 xl:bg-white xl:w-[388px] xl:dark:bg-zinc-900 xl:m-auto xl:mt-8 xl:py-4 xl:rounded-sm xl:shadow-lg"
@@ -47,14 +25,14 @@
           type="text"
           placeholder="请输入用户名"
           autocomplete="on"
-          class="dark:bg-zinc-800 dark:text-zinc-400 border-b-zinc-400 border-b-[-1px] w-full outline-0 pb-1 px-1 text-base focus:border-b-main dark:focus:border-b-zinc-200 xl:dark:bg-zinc-900"
+          class="rounded dark:bg-zinc-800 dark:text-zinc-400 border-b-zinc-400 border-b-[1px] w-full outline-0 pb-0 px-1 text-base focus:border-b-main dark:focus:border-b-zinc-200 xl:dark:bg-zinc-900"
         />
         <input
           name="password"
           type="password"
           placeholder="请输入密码"
           autocomplete="on"
-          class="dark:bg-zinc-800 dark:text-zinc-400 border-b-zinc-400 border-b-[-1px] w-full outline-0 pb-1 px-1 text-base focus:border-b-main dark:focus:border-b-zinc-200 xl:dark:bg-zinc-900"
+          class="rounded dark:bg-zinc-800 dark:text-zinc-400 border-b-zinc-400 border-b-[1px] w-full outline-0 pb-0 px-1 text-base focus:border-b-main dark:focus:border-b-zinc-200 xl:dark:bg-zinc-900"
         />
         <div class="pt-1 pb-3 leading-[0px] text-right">
           <a

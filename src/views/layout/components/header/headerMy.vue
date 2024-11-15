@@ -23,10 +23,15 @@
         />
       </div>
       <div v-else>
-        <m-button class="guide-my" icon="profile" iconColor="#fff" @click="onToLogin"></m-button>
+        <m-button
+          class="guide-my"
+          icon="profile"
+          iconColor="#fff"
+          @click="onToLogin"
+        ></m-button>
       </div>
     </template>
-    <div class="w-[140px] overflow-hidden">
+    <div v-if="false" class="w-[140px] overflow-hidden">
       <div
         v-for="item in PROFILE_CONFIG"
         :key="item.id"
@@ -46,7 +51,7 @@
 </template>
 
 <script setup>
-import { useRouter }  from 'vue-router'
+import { useRouter } from 'vue-router'
 import { PROFILE_CONFIG } from '@/constants'
 
 const router = useRouter()
