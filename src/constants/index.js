@@ -110,3 +110,11 @@ export const PROFILE_CONFIG = [
     title: '退出登录'
   }
 ]
+
+// 登录方式
+export const LOGIN_TYPE = {
+  username: 'username',
+  noRegisterCode: 204,
+  qq: 'QQ',
+  wx: 'WX'
+}
