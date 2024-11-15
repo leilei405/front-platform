@@ -36,6 +36,7 @@
       <div
         v-for="item in PROFILE_CONFIG"
         :key="item.id"
+        @click="onItemClick(item)"
         class="flex items-center p-1 cursor-pointer rounded hover:bg-zinc-100/60 dark:hover:bg-zinc-800"
       >
         <svg-icon
@@ -53,13 +54,38 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 import { PROFILE_CONFIG } from '@/constants'
+import { confirm } from '@/libs'
 
 const router = useRouter()
+const store = useStore()
 
 // 跳转到登录页
 const onToLogin = () => {
   router.push('/login')
+}
+
+const onItemClick = item => {
+  const actionMap = {
+    // 个人资料
+    [+PROFILE_CONFIG[0].id]: () => {
+      console.log('0000')
+    },
+    // 升级会员
+    [+PROFILE_CONFIG[1].id]: () => {
+      console.log('1111')
+    },
+    // 退出登录
+    [+PROFILE_CONFIG[2].id]: () => {
+      confirm('确认退出登录?').then(() => {
+        console.log('退出登录')
+        store.dispatch('user/logout')
+      })
+    }
+  }[item.id]
+
+  actionMap()
 }
 </script>
 

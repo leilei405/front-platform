@@ -56,6 +56,9 @@ const props = defineProps({
   cancelHandler: {
     type: Function
   },
+  confirmHandler: {
+    type: Function
+  },
   close: {
     type: Function
   }

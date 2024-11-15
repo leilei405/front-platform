@@ -93,7 +93,7 @@ export const THEME_CONFIG = [
 export const PROFILE_CONFIG = [
   {
     id: '0',
-    path: 'profile',
+    path: '/profile',
     icon: 'profile',
     title: '个人资料'
   },
