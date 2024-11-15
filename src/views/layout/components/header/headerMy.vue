@@ -3,12 +3,12 @@
     <template #reference>
       <div
         class="relative flex items-center p-0.5 rounded-sm cursor-pointer duration-200 outline-none hover:bg-zinc-100"
-        v-if="false"
+        v-if="$store.getters.token"
       >
         <!-- Profile Img -->
         <img
           class="h-3 w-3 cursor-pointer mr-2"
-          src="http://lowcodedemo.top/logo.jpg"
+          :src="$store.getters.userInfo.avatar"
         />
         <!-- arrow -->
         <svg-icon
@@ -18,6 +18,7 @@
         />
         <!-- vip -->
         <svg-icon
+          v-if="$store.getters.userInfo.vipLevel"
           name="vip"
           class="h-1.5 w-1.5 absolute right-[15px] top-[24px]"
         />
@@ -31,7 +32,7 @@
         ></m-button>
       </div>
     </template>
-    <div v-if="false" class="w-[140px] overflow-hidden">
+    <div v-if="$store.getters.token" class="w-[140px] overflow-hidden">
       <div
         v-for="item in PROFILE_CONFIG"
         :key="item.id"

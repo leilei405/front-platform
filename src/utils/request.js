@@ -1,4 +1,5 @@
 import axios from 'axios'
+import store from '@/store'
 
 const env = import.meta.env.VITE_BASE_API
 
@@ -16,6 +17,11 @@ export default config => {
       // 1.比如config中的一些信息不符合服务器的要求
       // 2.比如每次发送网络请求时，都希望在界面中显示一个请求的图标
       // 3.某些网络请求（比如登录（token）），必须携带一些特殊的信息
+      // 如果token存在，注入token
+      if (store.getters.token) {
+        config.headers.Authorization = `Bearer ${store.getters.token}`
+      }
+
       return config
     },
     err => {

@@ -10,5 +10,9 @@ export default {
   },
   historyList: state => state.search.historyList, // 历史搜索记录
 
-  searchText: state => state.app.searchText // 搜索文本
+  searchText: state => state.app.searchText, // 搜索文本
+
+  token: state => state.user.token, // 获取token
+
+  userInfo: state => state.user.userInfo // 获取用户信息
 }
