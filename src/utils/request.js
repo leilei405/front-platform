@@ -39,6 +39,10 @@ export default config => {
       return Promise.reject(new Error(message))
     },
     err => {
+      // 处理token超时问题
+      if (err.response && err.response.data && err.response.data.code === 401) {
+        store.dispatch('user/logout')
+      }
       return Promise.reject(err)
     }
   )
