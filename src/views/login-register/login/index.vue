@@ -4,8 +4,8 @@ import { validatePassword, validateUserName } from '../validate'
 import HeaderLogin from '../components/header.vue'
 
 // 登录
-const onLoginHandler = () => {
-  console.log('登录')
+const onLoginHandler = values => {
+  console.log('登录', values)
 }
 </script>
 
@@ -64,7 +64,9 @@ export default {
           >
         </div>
 
-        <m-button class="w-full dark:bg-zinc-900 xl:dark:bg-zinc-800"
+        <m-button
+          :isActiveAnim="false"
+          class="w-full dark:bg-zinc-900 xl:dark:bg-zinc-800"
           >登录</m-button
         >
       </Form>
