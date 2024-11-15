@@ -1,11 +1,22 @@
 <script setup>
+import { ref } from 'vue'
 import { Form, Field, ErrorMessage } from 'vee-validate'
 import { validatePassword, validateUserName } from '../validate'
 import HeaderLogin from '../components/header.vue'
+import SliderCaptcha from './slider-captcha.vue'
 
-// 登录
+const isSliderCaptchaVisible = ref(false)
+
+// 登录触发事件
 const onLoginHandler = values => {
+  isSliderCaptchaVisible.value = true
   console.log('登录', values)
+}
+
+// 人类行为验证触发
+const onCaptchaHandlerSuccess = values => {
+  isSliderCaptchaVisible.value = false
+  console.log('人类行为验证', values)
 }
 </script>
 
@@ -77,6 +88,11 @@ export default {
         <svg-icon class="w-4 cursor-pointer" name="weixin" />
       </div>
     </div>
+    <SliderCaptcha
+      v-if="isSliderCaptchaVisible"
+      @close="isSliderCaptchaVisible = false"
+      @success="onCaptchaHandlerSuccess"
+    />
   </div>
 </template>
 
