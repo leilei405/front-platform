@@ -1,6 +1,6 @@
 import md5 from 'md5'
 import { message } from '@/libs'
-import { loginUser, getUserInfo } from '@/api/sys'
+import { loginUser, getUserInfo, registerUser } from '@/api/sys'
 
 export default {
   namespaced: true,
@@ -32,6 +32,15 @@ export default {
       })
       context.commit('setToken', data.token)
       context.dispatch('getUserInfo')
+    },
+
+    // 注册用户
+    async register(context, payload) {
+      const { password } = payload
+      return await registerUser({
+        ...payload,
+        password: password ? md5(password) : ''
+      })
     },
 
     // 获取用户信息 存储用户信息

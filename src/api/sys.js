@@ -24,3 +24,12 @@ export const getUserInfo = () => {
     url: '/user/profile'
   })
 }
+
+// 注册用户
+export const registerUser = data => {
+  return request({
+    url: '/sys/register',
+    method: 'post',
+    data
+  })
+}

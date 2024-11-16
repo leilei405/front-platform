@@ -1,7 +1,9 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import { useStore } from 'vuex'
 import { Form, Field, ErrorMessage, defineRule } from 'vee-validate'
+import { LOGIN_TYPE } from '@/constants'
 import {
   validatePassword,
   validateUserName,
@@ -14,6 +16,7 @@ import HeaderLogin from '../components/header.vue'
 defineRule('validateConfirmPassword', validateConfirmPassword)
 
 const router = useRouter()
+const store = useStore()
 const registerLoading = ref(false)
 const registerForm = ref({
   username: '',
@@ -21,8 +24,22 @@ const registerForm = ref({
   confirmPassword: ''
 })
 
-const onRegisterHandler = values => {
-  console.log('注册成功', values)
+const onRegisterHandler = async values => {
+  registerLoading.value = true
+  try {
+    const payload = {
+      username: registerForm.value.username,
+      password: registerForm.value.password
+    }
+    await store.dispatch('user/register', payload)
+    await store.dispatch('user/login', {
+      ...payload,
+      loginType: LOGIN_TYPE.username
+    })
+  } finally {
+    registerLoading.value = false
+  }
+  router.push('/')
 }
 
 const toHandleLogin = () => {
