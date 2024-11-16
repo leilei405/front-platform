@@ -31,3 +31,21 @@ export const validatePassword = value => {
 
   return true
 }
+
+/**
+ * 确认密码的二次验证
+ * @param {value, password} 表单值
+ * @return {Boolean}
+ */
+
+export const validateConfirmPassword = (value, password) => {
+  if (!value) {
+    return '确认密码为必填的'
+  }
+
+  if (value !== password[0]) {
+    return '两次密码输入不一致'
+  }
+
+  return true
+}

@@ -43,6 +43,10 @@ const login = async () => {
   }
   router.push('/')
 }
+
+const toHandleRegister = () => {
+  router.push('/register')
+}
 </script>
 
 <script>
@@ -64,7 +68,7 @@ export default {
       class="block px-3 mt-4 dark:bg-zinc-800 xl:bg-white xl:w-[388px] xl:dark:bg-zinc-900 xl:m-auto xl:mt-8 xl:py-4 xl:rounded-sm xl:shadow-lg"
     >
       <h3
-        class="mb-2 font-semibold text-base text-main dark:text-zinc-300 hidden xl:block"
+        class="mb-2 font-semibold text-base text-neutral-900 dark:text-zinc-300 hidden xl:block"
       >
         账号登录
       </h3>
@@ -97,6 +101,7 @@ export default {
         ></ErrorMessage>
         <div class="pt-1 pb-3 leading-[0px] text-right">
           <a
+            @click="toHandleRegister"
             class="inline-block p-1 text-zinc-400 text-right dark:text-zinc-600 hover:text-zinc-600 dark:hover:text-zinc-400 text-sm duration-400 cursor-pointer"
             >去注册</a
           >
