@@ -7,6 +7,7 @@ import directives from './directives'
 import '@/permission'
 import store from './store'
 import App from './App.vue'
+import './permission'
 import './styles/index.scss'
 
 // 注册svg图标
