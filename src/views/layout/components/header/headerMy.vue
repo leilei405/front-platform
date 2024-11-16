@@ -70,7 +70,7 @@ const onItemClick = item => {
   const actionMap = {
     // 个人资料
     [+PROFILE_CONFIG[0].id]: () => {
-      console.log('0000')
+      router.push('/profile')
     },
     // 升级会员
     [+PROFILE_CONFIG[1].id]: () => {

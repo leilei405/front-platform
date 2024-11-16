@@ -62,14 +62,14 @@ const props = defineProps({
 })
 
 // 事件声明
-const emits = defineEmits(['update:modelValue', 'change', 'input'])
+defineEmits(['update:modelValue'])
 const text = useVModel(props)
-
-console.log(text.value)
 
 // 计算当前输入的长度
 const inputLength = computed(() => {
-  return text.value.length
+  if (text.value) {
+    return text.value.length
+  }
 })
 </script>
 
