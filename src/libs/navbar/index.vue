@@ -17,7 +17,7 @@
     </div>
 
     <div
-      class="h-full flex item-center justify-center m-auto font-bold text-base text-zinc-900 dark:text-neutral-200"
+      class="h-full flex items-center justify-center m-auto font-bold text-base text-zinc-900 dark:text-neutral-200"
     >
       <slot></slot>
     </div>

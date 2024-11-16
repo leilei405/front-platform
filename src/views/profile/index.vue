@@ -168,7 +168,7 @@ export default {
 </script>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { isMobileTerminal } from '@/utils/flexible'
@@ -198,6 +198,13 @@ const onFileImgChange = () => {
   currentBlob.value = blob
   isDialogVisible.value = true
 }
+
+// 监听Dialog 关闭
+watch(isDialogVisible, val => {
+  if (!val) {
+    inputFileTarget.value.value = null
+  }
+})
 
 const onAvatarClick = () => {
   inputFileTarget.value.click()
