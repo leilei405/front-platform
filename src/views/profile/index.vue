@@ -156,7 +156,6 @@ import { useStore } from 'vuex'
 import { isMobileTerminal } from '@/utils/flexible'
 import { confirm, message } from '@/libs'
 import { updateUserInfo } from '@/api/sys'
-import user from '../../store/modules/user'
 
 const router = useRouter()
 const store = useStore()
