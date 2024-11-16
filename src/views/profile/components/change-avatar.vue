@@ -46,6 +46,7 @@ import { useStore } from 'vuex'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 import { isMobileTerminal } from '@/utils/flexible'
+import { updateUserInfo } from '@/api/sys'
 import { getOssClient } from '@/utils/sts'
 import { message } from '@/libs'
 
@@ -57,6 +58,8 @@ defineProps({
 })
 
 const store = useStore()
+
+const loading = ref(false)
 
 const emits = defineEmits([EMITS_CLOSE])
 
@@ -78,9 +81,28 @@ const putObjectToOSS = async file => {
 
     // 文件存放路径
     const result = await ossClient.put(`images/${fileName}`, file)
+    onUpdateAvatar(result.url)
   } catch (error) {
     message('error', `上传失败，请重试!!!${error}`)
   }
+}
+
+/**
+ * @description 完成头像的更新操作
+ * @param { String } 裁剪后的图片地址
+ */
+const onUpdateAvatar = async avatarUrl => {
+  // 1. 发送请求 修改用户头像
+  store.commit('user/setUserInfo', {
+    ...store.getters.userInfo,
+    avatar: avatarUrl
+  })
+  // 2. 发送请求 修改用户信息
+  await updateUserInfo(store.getters.userInfo)
+  message('success', '头像更新成功')
+  // 3. 关闭弹窗
+  loading.value = false
+  onClose()
 }
 
 /**
@@ -100,7 +122,6 @@ onMounted(() => {
  * @description 确定按钮点击事件
  * @param { String } 裁剪后的图片地址
  */
-const loading = ref(false)
 const onConfirmClick = () => {
   loading.value = true
 

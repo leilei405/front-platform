@@ -17,8 +17,8 @@ export default {
     // 存储用户信息
     setUserInfo(state, userInfo) {
       state.userInfo = {
-        ...userInfo,
-        avatar: 'http://lowcodedemo.top/logo.jpg'
+        ...userInfo
+        // avatar: 'http://lowcodedemo.top/logo.jpg'
       }
     }
   },
