@@ -10,7 +10,10 @@
 
     <img :src="blob" ref="imageTarget" alt="" />
 
-    <m-button class="mt-4 w-[80%] xl:w-1/2" @click="onConfirmClick"
+    <m-button
+      :loading="loading"
+      class="mt-4 w-[80%] xl:w-1/2"
+      @click="onConfirmClick"
       >确定</m-button
     >
   </div>
@@ -81,8 +84,8 @@ const onConfirmClick = () => {
       console.log(URL.createObjectURL(blob))
 
       // emits('confirm', blob)
-      // loading.value = false
     })
+  loading.value = false
 }
 
 //  关闭弹窗
