@@ -140,6 +140,24 @@
         </m-button>
       </div>
     </div>
+
+    <!-- PC 端 -->
+    <m-dialog
+      title="图像裁剪"
+      v-model="isDialogVisible"
+      v-if="!isMobileTerminal"
+    >
+      <UpdateAvatar :blob="currentBlob" @close="isDialogVisible = false" />
+    </m-dialog>
+
+    <!--  移动端 -->
+    <popup
+      v-model="isDialogVisible"
+      :class="isDialogVisible ? 'h-screen p-1' : ''"
+      v-else
+    >
+      <UpdateAvatar :blob="currentBlob" @close="isDialogVisible = false" />
+    </popup>
   </div>
 </template>
 
@@ -156,6 +174,7 @@ import { useStore } from 'vuex'
 import { isMobileTerminal } from '@/utils/flexible'
 import { confirm, message } from '@/libs'
 import { updateUserInfo } from '@/api/sys'
+import UpdateAvatar from './components/change-avatar.vue' // 裁剪头像组件
 
 const router = useRouter()
 const store = useStore()
@@ -163,6 +182,8 @@ const userInfo = ref(store.getters.userInfo)
 
 const inputFileTarget = ref(null)
 const loading = ref(false)
+const isDialogVisible = ref(false)
+const currentBlob = ref('')
 
 // Mobile Back()
 const onNavbarLeftClick = () => {
@@ -171,7 +192,11 @@ const onNavbarLeftClick = () => {
 
 // 选中文件后的回调
 const onFileImgChange = () => {
-  //
+  // 获取选中的文件
+  const file = inputFileTarget.value.files[0]
+  const blob = URL.createObjectURL(file)
+  currentBlob.value = blob
+  isDialogVisible.value = true
 }
 
 const onAvatarClick = () => {
