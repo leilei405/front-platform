@@ -69,7 +69,8 @@
             >用户名</span
           >
           <m-input
-            v-model="$store.getters.userInfo.username"
+            :modelValue="$store.getters.userInfo.nickname"
+            @update:modelValue="changeStoreUserInfo('nickname', $event)"
             class="w-full"
             type="text"
             max="20"
@@ -82,7 +83,8 @@
             >职位</span
           >
           <m-input
-            v-model="$store.getters.userInfo.title"
+            :modelValue="$store.getters.userInfo.title"
+            @update:modelValue="changeStoreUserInfo('title', $event)"
             class="w-full"
             type="text"
           ></m-input>
@@ -94,7 +96,8 @@
             >公司</span
           >
           <m-input
-            v-model="$store.getters.userInfo.company"
+            :modelValue="$store.getters.userInfo.company"
+            @update:modelValue="changeStoreUserInfo('company', $event)"
             class="w-full"
             type="text"
           ></m-input>
@@ -106,7 +109,8 @@
             >个人主页</span
           >
           <m-input
-            v-model="$store.getters.userInfo.homePage"
+            :modelValue="$store.getters.userInfo.homePage"
+            @update:modelValue="changeStoreUserInfo('homePage', $event)"
             class="w-full"
             type="text"
           ></m-input>
@@ -118,7 +122,8 @@
             >个人介绍</span
           >
           <m-input
-            v-model="$store.getters.userInfo.introduction"
+            :modelValue="$store.getters.userInfo.introduction"
+            @update:modelValue="changeStoreUserInfo('introduction', $event)"
             class="w-full"
             type="textarea"
             max="50"
@@ -154,7 +159,8 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
 import { isMobileTerminal } from '@/utils/flexible'
-import { confirm } from '@/libs'
+import { confirm, message } from '@/libs'
+import { updateUserInfo } from '@/api/sys'
 
 const router = useRouter()
 const store = useStore()
@@ -177,10 +183,20 @@ const onAvatarClick = () => {
 }
 
 // 保存修改用户信息
-const onChangeProfile = () => {
-  //
+const onChangeProfile = async () => {
+  loading.value = true
+  await updateUserInfo(store.getters.userInfo)
+  message('success', '用户信息修改成功')
+  loading.value = false
 }
 
+// Vuex本地数据的双向同步
+const changeStoreUserInfo = (key, val) => {
+  store.commit('user/setUserInfo', {
+    ...store.getters.userInfo,
+    [key]: val
+  })
+}
 // 退出登录
 const onLogoutClick = () => {
   confirm('确认退出登录吗？').then(() => {

@@ -33,3 +33,12 @@ export const registerUser = data => {
     data
   })
 }
+
+// 修改用户信息
+export const updateUserInfo = data => {
+  return request({
+    url: '/user/profile',
+    method: 'put',
+    data
+  })
+}
