@@ -42,9 +42,12 @@ const pcOptions = {
 
 <script setup>
 import { onMounted, ref } from 'vue'
+import { useStore } from 'vuex'
 import Cropper from 'cropperjs'
 import 'cropperjs/dist/cropper.css'
 import { isMobileTerminal } from '@/utils/flexible'
+import { getOssClient } from '@/utils/sts'
+import { message } from '@/libs'
 
 defineProps({
   blob: {
@@ -53,16 +56,39 @@ defineProps({
   }
 })
 
+const store = useStore()
+
 const emits = defineEmits([EMITS_CLOSE])
 
-//  初始化裁剪器
-const imageTarget = ref(null)
-let cropper = null
+/**
+ * @description OSS 上传
+ * @param { File } 图片文件
+ */
+let ossClient = null
+const putObjectToOSS = async file => {
+  if (!ossClient) {
+    ossClient = await getOssClient()
+  }
+
+  try {
+    const accept = file.type.split('/')[1]
+    const fileName = `${
+      store.getters.userInfo.username
+    }/lucky_${Date.now()}.${accept}`
+
+    // 文件存放路径
+    const result = await ossClient.put(`images/${fileName}`, file)
+  } catch (error) {
+    message('error', `上传失败，请重试!!!${error}`)
+  }
+}
 
 /**
- * @description 页面挂载完毕
+ * @description 页面挂载完毕  初始化裁剪器
  * @param { DOM,  ConfigObject } 图片DOM & 配置对象
  */
+const imageTarget = ref(null)
+let cropper = null
 onMounted(() => {
   cropper = new Cropper(
     imageTarget.value,
@@ -81,9 +107,7 @@ const onConfirmClick = () => {
   // 裁剪后生成新的图片地址
   cropper &&
     cropper.getCroppedCanvas().toBlob(blob => {
-      console.log(URL.createObjectURL(blob))
-
-      // emits('confirm', blob)
+      putObjectToOSS(blob)
     })
   loading.value = false
 }

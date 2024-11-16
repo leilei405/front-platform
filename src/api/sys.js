@@ -42,3 +42,10 @@ export const updateUserInfo = data => {
     data
   })
 }
+
+// 获取OSS上传凭证
+export const getOssToken = () => {
+  return request({
+    url: '/user/sts'
+  })
+}

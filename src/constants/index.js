@@ -118,3 +118,9 @@ export const LOGIN_TYPE = {
   qq: 'QQ',
   wx: 'WX'
 }
+
+// 阿里云OSS 配置
+export const OSS_CONFIG = {
+  region: 'oss-cn-hangzhou',
+  bucket: 'lucky-file-project'
+}
