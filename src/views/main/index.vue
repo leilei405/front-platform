@@ -39,6 +39,12 @@
   </div>
 </template>
 
+<script>
+export default {
+  name: 'home'
+}
+</script>
+
 <script setup>
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'

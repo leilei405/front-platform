@@ -8,10 +8,11 @@
       @after-leave="afterLeave"
     >
       <!-- 缓存组件 -->
-      <keep-alive>
+      <keep-alive :include="taskStack">
         <component
           :class="isAnimation ? 'fixed top-0 left-0 w-screen z-50' : ''"
           :is="Component"
+          :key="$route.fullPath"
         />
       </keep-alive>
     </transition>
@@ -29,7 +30,9 @@ const ROUTER_TYPE_ENUM = [NONE, PUSH, BACK]
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-// 定义对应的Props
+
+const router = useRouter()
+
 const props = defineProps({
   // 路由跳转类型
   routerType: {
@@ -53,13 +56,33 @@ const props = defineProps({
   }
 })
 
-const router = useRouter()
 const transitionName = ref('')
 
-// 路由的前置守卫
-router.beforeEach(() => {
+/**
+ * @description: 路由的前置守卫
+ * @description: 虚拟任务栈数组
+ */
+const taskStack = ref([props.mainComponent])
+router.beforeEach(to => {
   transitionName.value = props.routerType
+
+  if (props.routerType === PUSH) {
+    // 入栈
+    taskStack.value.push(to.name)
+  } else if (props.routerType === BACK) {
+    // 出栈
+    taskStack.value.pop()
+  }
+
+  // 进入首页默认清空任务栈
+  if (to.name === props.mainComponent) {
+    clearStackTask()
+  }
 })
+
+const clearStackTask = () => {
+  taskStack.value = [props.mainComponent]
+}
 
 // 监听开始结束动画
 const isAnimation = ref(false)
