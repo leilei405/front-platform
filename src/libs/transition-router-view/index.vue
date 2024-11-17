@@ -28,7 +28,7 @@ const ROUTER_TYPE_ENUM = [NONE, PUSH, BACK]
 </script>
 
 <script setup>
-import { ref } from 'vue'
+import { onActivated, ref } from 'vue'
 import { useRouter } from 'vue-router'
 
 const router = useRouter()
@@ -80,6 +80,7 @@ router.beforeEach(to => {
   }
 })
 
+// 清空任务栈
 const clearStackTask = () => {
   taskStack.value = [props.mainComponent]
 }

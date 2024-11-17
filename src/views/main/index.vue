@@ -1,5 +1,6 @@
 <template>
   <div
+    ref="containerTarget"
     class="h-full overflow-auto bg-white dark:bg-zinc-800 duration-500 scrollbar-thin scrollbar-thumb-transparent xl:scrollbar-thumb-zinc-200 xl:dark:scrollbar-thumb-zinc-900 scrollbar-track-transparent"
   >
     <Navigation />
@@ -46,8 +47,10 @@ export default {
 </script>
 
 <script setup>
+import { ref, onActivated } from 'vue'
 import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
+import { useScroll } from '@vueuse/core'
 import { isMobileTerminal } from '@/utils/flexible'
 import Navigation from './components/navigation/index.vue'
 import ImageList from './components/list/index.vue'
@@ -69,6 +72,16 @@ const onProfileClick = () => {
     router.push('/profile')
   }
 }
+
+// 记录页面滚动位置
+const containerTarget = ref(null)
+const { y: containerScrollY } = useScroll(containerTarget)
+onActivated(() => {
+  if (!containerTarget.value) {
+    return
+  }
+  containerTarget.value.scrollTop = containerScrollY.value
+})
 </script>
 
 <style lang="scss" scoped></style>
