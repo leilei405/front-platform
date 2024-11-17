@@ -4,7 +4,7 @@
     <!-- <router-view /> -->
     <transition-router-view
       :routerType="$store.getters.routerType"
-      :mainComponent="home"
+      mainComponent="home"
     ></transition-router-view>
   </div>
 </template>

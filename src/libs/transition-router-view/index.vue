@@ -79,13 +79,13 @@ router.beforeEach(() => {
 // newPage 进入
 .push-enter-active {
   animation-name: push-in;
-  animation-direction: 5s;
+  animation-duration: 0.5s;
 }
 
 // oldPage 离开
 .push-leave-active {
   animation-name: push-out;
-  animation-direction: 5s;
+  animation-duration: 0.5s;
 }
 
 // TODO: back
@@ -116,12 +116,12 @@ router.beforeEach(() => {
 // back页面：即将展示的页面动画
 .back-enter-active {
   animation-name: back-in;
-  animation-direction: 0.4s;
+  animation-duration: 0.5s;
 }
 
 // back页面：后退页面执行的动画
 .back-leave-active {
   animation-name: back-out;
-  animation-direction: 0.4s;
+  animation-duration: 0.5s;
 }
 </style>
