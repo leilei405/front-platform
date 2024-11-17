@@ -58,9 +58,10 @@ import ImageList from './components/list/index.vue'
 const router = useRouter()
 const store = useStore()
 
-// 点击
+// 点击跳转VIP页面
 const onVipClick = () => {
-  // 跳转到 VIP 页面
+  store.commit('app/changeRouterType', 'push')
+  router.push('/member')
 }
 
 const onProfileClick = () => {

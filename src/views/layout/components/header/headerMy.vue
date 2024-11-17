@@ -76,7 +76,7 @@ const onItemClick = item => {
     },
     // 升级会员
     [+PROFILE_CONFIG[1].id]: () => {
-      console.log('1111')
+      router.push('/member')
     },
     // 退出登录
     [+PROFILE_CONFIG[2].id]: () => {

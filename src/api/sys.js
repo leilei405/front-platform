@@ -49,3 +49,10 @@ export const getOssToken = () => {
     url: '/user/sts'
   })
 }
+
+// 获取支付数据
+export const getVipPayData = () => {
+  return request({
+    url: '/user/vip/pay/list'
+  })
+}

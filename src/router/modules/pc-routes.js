@@ -16,6 +16,15 @@ export default [
         meta: {
           user: true
         }
+      },
+      // 支付页面
+      {
+        path: '/member',
+        name: 'member',
+        component: () => import('@/views/member/index.vue'),
+        meta: {
+          user: true
+        }
       }
     ]
   },

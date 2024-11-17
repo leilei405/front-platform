@@ -19,10 +19,20 @@ export default [
     name: 'register',
     component: () => import('@/views/login-register/register/index.vue')
   },
+  // 个人中心
   {
     path: '/profile',
     name: 'profile',
     component: () => import('@/views/profile/index.vue'),
+    meta: {
+      user: true
+    }
+  },
+  // 支付页面
+  {
+    path: '/member',
+    name: 'member',
+    component: () => import('@/views/member/index.vue'),
     meta: {
       user: true
     }
