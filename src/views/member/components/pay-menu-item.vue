@@ -38,7 +38,7 @@
 
     <!-- 热销 -->
     <div
-      v-if="hot"
+      v-if="isHot"
       class="absolute right-[-1px] top-[-12px] h-[22px] w-[48px] leading-[22px] text-center text-yellow-700 bg-gradient-to-r from-orange-300 to-orange-100 text-[12px] rounded-tr-[10px] rounded-bl-[10px]"
     >
       热销
