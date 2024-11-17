@@ -6,12 +6,56 @@
     <div class="max-w-screen-xl mx-auto relative m-1 xl:mt-4">
       <ImageList />
     </div>
+
+    <!--  移动端TabBar -->
+    <trigger-menu
+      v-if="isMobileTerminal"
+      class="fixed bottom-6 m-auto left-0 right-0 w-[220px]"
+    >
+      <trigger-menu-item
+        class=""
+        icon="home"
+        iconClass="fill-zinc-900 dark:fill-zinc-200"
+        >首页</trigger-menu-item
+      >
+
+      <trigger-menu-item
+        v-if="$store.getters.token"
+        icon="vip"
+        iconClass="fill-zinc-400 dark:fill-zinc-500"
+        textClass="text-zinc-400 dark:fill-zinc-500"
+        @click="onVipClick"
+        >VIP</trigger-menu-item
+      >
+
+      <trigger-menu-item
+        icon="profile"
+        iconClass="fill-zinc-400 dark:fill-zinc-500"
+        textClass="text-zinc-400 dark:fill-zinc-500"
+        @click="onProfileClick"
+        >{{ $store.getters.token ? '我的' : '去登录' }}</trigger-menu-item
+      >
+    </trigger-menu>
   </div>
 </template>
 
 <script setup>
+import { useRouter } from 'vue-router'
+import { isMobileTerminal } from '@/utils/flexible'
 import Navigation from './components/navigation/index.vue'
 import ImageList from './components/list/index.vue'
+
+const router = useRouter()
+
+// 点击
+const onVipClick = () => {
+  // 跳转到 VIP 页面
+}
+
+const onProfileClick = () => {
+  // 跳转到 登录 页面
+  router.push('/login')
+}
 </script>
 
 <style lang="scss" scoped></style>
