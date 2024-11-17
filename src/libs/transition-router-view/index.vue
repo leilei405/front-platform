@@ -2,10 +2,17 @@
   <!-- 路由出口 -->
   <router-view v-slot="{ Component }">
     <!-- 动画组件 -->
-    <transition :name="transitionName">
+    <transition
+      :name="transitionName"
+      @before-enter="beforeEnter"
+      @after-leave="afterLeave"
+    >
       <!-- 缓存组件 -->
       <keep-alive>
-        <component :is="Component" />
+        <component
+          :class="isAnimation ? 'fixed top-0 left-0 w-screen z-50' : ''"
+          :is="Component"
+        />
       </keep-alive>
     </transition>
   </router-view>
@@ -53,6 +60,16 @@ const transitionName = ref('')
 router.beforeEach(() => {
   transitionName.value = props.routerType
 })
+
+// 监听开始结束动画
+const isAnimation = ref(false)
+const beforeEnter = () => {
+  isAnimation.value = true
+}
+
+const afterLeave = () => {
+  isAnimation.value = false
+}
 </script>
 
 <style lang="scss" scoped>
