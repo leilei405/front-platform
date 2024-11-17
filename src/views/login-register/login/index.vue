@@ -45,6 +45,7 @@ const login = async () => {
 }
 
 const toHandleRegister = () => {
+  store.commit('app/changeRouterType', 'push')
   router.push('/register')
 }
 </script>

@@ -80,7 +80,8 @@ const { x: ulScrollLeft } = useScroll(ulTarget)
 watch(
   () => store.getters.currentCategoryIndex,
   val => {
-    const { left, width } = itemRefs[val].getBoundingClientRect()
+    const { left, width } =
+      itemRefs[val] && itemRefs[val].getBoundingClientRect()
     // const res = itemRefs[val].getBoundingClientRect()
 
     sliderStyle.value = {

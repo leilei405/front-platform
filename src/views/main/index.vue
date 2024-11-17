@@ -40,12 +40,14 @@
 </template>
 
 <script setup>
+import { useStore } from 'vuex'
 import { useRouter } from 'vue-router'
 import { isMobileTerminal } from '@/utils/flexible'
 import Navigation from './components/navigation/index.vue'
 import ImageList from './components/list/index.vue'
 
 const router = useRouter()
+const store = useStore()
 
 // 点击
 const onVipClick = () => {
@@ -53,8 +55,13 @@ const onVipClick = () => {
 }
 
 const onProfileClick = () => {
+  store.commit('app/changeRouterType', 'push')
   // 跳转到 登录 页面
-  router.push('/login')
+  if (!store.getters.token) {
+    router.push('/login')
+  } else {
+    router.push('/profile')
+  }
 }
 </script>
 

@@ -4,7 +4,8 @@ export default {
   namespaced: true,
   state: () => ({
     currentCategory: initCategoryList,
-    searchText: ''
+    searchText: '',
+    routerType: 'none' // 路由跳转类型
   }),
   mutations: {
     changeCurrentCategory(state, newCategory) {
@@ -12,6 +13,11 @@ export default {
     },
     changeSearchText(state, newSearchText) {
       state.searchText = newSearchText
+    },
+
+    // 修改路由跳转类型
+    changeRouterType(state, newRouterType) {
+      state.routerType = newRouterType
     }
   },
   actions: {}

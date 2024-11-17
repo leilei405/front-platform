@@ -107,7 +107,7 @@ const getImageDetailData = async () => {
 // 关闭弹窗
 const closeModal = () => {
   console.log('关闭弹窗')
-
+  store.commit('app/changeRouterType', 'back')
   router.back()
 }
 

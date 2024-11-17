@@ -63,10 +63,12 @@ const store = useStore()
 
 // 跳转到登录页
 const onToLogin = () => {
+  store.commit('app/changeRouterType', 'push')
   router.push('/login')
 }
 
 const onItemClick = item => {
+  store.commit('app/changeRouterType', 'push')
   const actionMap = {
     // 个人资料
     [+PROFILE_CONFIG[0].id]: () => {

@@ -17,7 +17,9 @@
 
       <div class="h-full w-full px-1 pb-4 text-sm mt-2 xl:w-2/3 xl:pb-0">
         <!-- 头像 -->
-        <div class="py-1 xl:absolute xl:right-[16%] xl:text-center">
+        <div
+          class="py-1 xl:absolute xl:right-[16%] xl:text-center flex flex-col items-center"
+        >
           <span
             class="w-8 inline-block mb-2 font-bold text-sm dark:text-zinc-300 xl:block xl:mx-auto"
             >我的头像</span
@@ -187,6 +189,7 @@ const currentBlob = ref('')
 
 // Mobile Back()
 const onNavbarLeftClick = () => {
+  store.commit('app/changeRouterType', 'back')
   router.back()
 }
 
