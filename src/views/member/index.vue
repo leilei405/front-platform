@@ -28,6 +28,7 @@
         <p class="mt-1 text-sm text-zinc-500">
           {{ selectPayData.desc }}
         </p>
+        <count-down :time="1000 * 60"></count-down>
       </div>
     </div>
   </div>
