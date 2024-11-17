@@ -28,7 +28,7 @@
         <p class="mt-1 text-sm text-zinc-500">
           {{ selectPayData.desc }}
         </p>
-        <count-down :time="1000 * 60"></count-down>
+        <Payment class="mt-4" />
       </div>
     </div>
   </div>
@@ -47,6 +47,7 @@ import { useRouter } from 'vue-router'
 import { isMobileTerminal } from '@/utils/flexible'
 import { getVipPayData } from '@/api/sys'
 import PayMenuItem from './components/pay-menu-item.vue'
+import Payment from './components/payment/index.vue'
 
 const store = useStore()
 const router = useRouter()
